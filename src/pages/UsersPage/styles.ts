@@ -7,7 +7,8 @@ export const SpinnerContainer = styled(Box)`
 	color: #20b2aa;
 `;
 
-export const Test = styled(Container)`
+export const Wrapper = styled(Container)`
+	border: 1px solid green;
 	color: #20b2aa;
 
 	:hover {

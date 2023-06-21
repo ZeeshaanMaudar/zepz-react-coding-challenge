@@ -4,14 +4,14 @@ import { Alert, CircularProgress } from '@mui/material';
 
 import { useFetchUsers } from '../../api/users';
 
-import { SpinnerContainer, Test } from './styles';
+import { SpinnerContainer, Wrapper } from './styles';
+import { UsersList } from '../../components/UsersList/UsersList';
 
 
 export const UsersPage = () => {
 
 	const { loading, usersList, error } = useFetchUsers();
 
-	console.log('usersData: ', usersList);
 	if (error) {
 		return (
 			<Alert severity="error" color="error">
@@ -28,5 +28,9 @@ export const UsersPage = () => {
 		);
 	}
 
-  return <Test>This is the Users Page</Test>;
+  return (
+  		<Wrapper>
+			<UsersList usersList={usersList} />
+		</Wrapper>
+	);
 };
