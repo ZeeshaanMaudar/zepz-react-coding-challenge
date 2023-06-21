@@ -4,14 +4,12 @@ export const SpinnerContainer = styled(Box)`
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	color: #20b2aa;
+	align-items: center;
+	height: 100vh;
 `;
 
 export const Wrapper = styled(Container)`
-	border: 1px solid green;
-	color: #20b2aa;
-
-	:hover {
-		color: #2e8b57;
-	}
+	padding-top: 10px;
+	padding-bottom: 10px;
 `;
+
