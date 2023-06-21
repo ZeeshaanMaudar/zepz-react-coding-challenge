@@ -13,7 +13,7 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 
 	const [expanded, setExpanded] = useState<number | false>(false);
 
-	const { usersStatus, followUser, unfollowUser } = useUserStatus(usersList);
+	const { usersStatus, followUser, unfollowUser, blockUser } = useUserStatus(usersList);
 
   const handleAccordionToggleChange = (isExpanded: boolean, panel: number) => {
 		setExpanded(isExpanded ? panel : false);
@@ -23,6 +23,11 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 		if(usersStatus[userId] === FollowStatus.FOLLOWING) return unfollowUser(userId);
 		return followUser(userId);
 	}
+
+	const handleBlockUser = (userId: number) => {
+		blockUser(userId);
+		setExpanded(false);
+	};
 
 	const callFollowOrUnFollow = (usersStatus: FollowersMap, userId: number) => {
 		if(usersStatus[userId] === FollowStatus.FOLLOWING) return 'Unfollow';
@@ -47,6 +52,7 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 						key={user_id}
 						expanded={expanded === user_id}
 						onChange={(event, isExpanded) => handleAccordionToggleChange(isExpanded, user_id)}
+						disabled={usersStatus[user_id] === FollowStatus.BLOCKED}
 					>
 						<AccordionSummary
 							expandIcon={<ExpandMoreIcon />}
@@ -68,7 +74,7 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 							<Button onClick={() => handleFollowChange(usersStatus, user_id)}>
 								{callFollowOrUnFollow(usersStatus, user_id)}
 							</Button>
-							<Button color="error">Block</Button>
+							<Button color="error" onClick={() => handleBlockUser(user_id)}>Block</Button>
 						</AccordionDetails>
 				</AccordionStyled>
 				)

@@ -8,6 +8,10 @@ export const setUnFollowStatus = (userId: number) => {
 	localStorage.setItem(`${userId}`, FollowStatus.UNFOLLOWING);
 };
 
+export const setBlockStatus = (userId: number) => {
+	localStorage.setItem(`${userId}`, FollowStatus.BLOCKED);
+};
+
 export const getFollowStatus = (userIdsList: number[]) => {
 
   const followStatusMap: FollowersMap = {};

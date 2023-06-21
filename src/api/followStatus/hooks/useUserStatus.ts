@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { setFollowStatus, setUnFollowStatus, getFollowStatus } from '..';
+import {
+	setFollowStatus,
+	setUnFollowStatus,
+	setBlockStatus,
+	getFollowStatus
+} from '..';
+
 import { FollowersMap } from '../types';
 import { UserItem } from '../../users/types';
 
@@ -25,5 +31,16 @@ export const useUserStatus = (usersList: UserItem[]) => {
 		setUsersStatus(usersStatus);
 	};
 
-	return { usersStatus, followUser, unfollowUser };
+	const blockUser = (userId: number) => {
+		setBlockStatus(userId);
+		const usersStatus = getFollowStatus(userIds);
+		setUsersStatus(usersStatus);
+	};
+
+	return {
+		usersStatus,
+		followUser,
+		unfollowUser,
+		blockUser
+	};
 };
