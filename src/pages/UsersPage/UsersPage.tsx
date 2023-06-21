@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { AxiosError } from 'axios';
 
 import { Alert, CircularProgress } from '@mui/material';
@@ -9,7 +9,7 @@ import { SpinnerContainer, Wrapper } from './styles';
 import { UsersList } from '../../components/UsersList/UsersList';
 
 
-export const UsersPage = () => {
+export const UsersPage: FC = () => {
 
 	const { loading, usersList, error } = useFetchUsers();
 
