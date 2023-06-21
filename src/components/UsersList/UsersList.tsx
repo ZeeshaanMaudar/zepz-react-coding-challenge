@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { AccordionDetails, AccordionSummary, Box, Button, Avatar } from '@mui/material';
+import { AccordionDetails, AccordionSummary, Box, Button, Avatar, Stack } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon, Person as PersonIcon } from '@mui/icons-material';
 
 import { useUserStatus } from '../../api/followStatus';
@@ -13,11 +13,16 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 
 	const [expanded, setExpanded] = useState<number | false>(false);
 
-	const { usersStatus, followUser } = useUserStatus(usersList);
+	const { usersStatus, followUser, unfollowUser } = useUserStatus(usersList);
 
-  const handleChange = (isExpanded: boolean, panel: number) => {
+  const handleAccordionToggleChange = (isExpanded: boolean, panel: number) => {
 		setExpanded(isExpanded ? panel : false);
 	};
+
+	const handleFollowChange = (usersStatus: FollowersMap, userId: number) => {
+		if(usersStatus[userId] === FollowStatus.FOLLOWING) return unfollowUser(userId);
+		return followUser(userId);
+	}
 
 	const callFollowOrUnFollow = (usersStatus: FollowersMap, userId: number) => {
 		if(usersStatus[userId] === FollowStatus.FOLLOWING) return 'Unfollow';
@@ -41,7 +46,7 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 					<AccordionStyled
 						key={user_id}
 						expanded={expanded === user_id}
-						onChange={(event, isExpanded) => handleChange(isExpanded, user_id)}
+						onChange={(event, isExpanded) => handleAccordionToggleChange(isExpanded, user_id)}
 					>
 						<AccordionSummary
 							expandIcon={<ExpandMoreIcon />}
@@ -52,15 +57,15 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 								<Avatar alt={display_name} src={profile_image} />
 							</Box>
 							<Header>
-								<Box>
+								<Stack direction="row">
 									<Title>{display_name}</Title>
 									{callFollowIcon(usersStatus, user_id)}
-								</Box>
+								</Stack>
 								<Subtitle color="text.secondary">Reputation: {reputation}</Subtitle>
 							</Header>
 						</AccordionSummary>
 						<AccordionDetails>
-							<Button onClick={() => followUser(user_id)}>
+							<Button onClick={() => handleFollowChange(usersStatus, user_id)}>
 								{callFollowOrUnFollow(usersStatus, user_id)}
 							</Button>
 							<Button color="error">Block</Button>
