@@ -1,5 +1,6 @@
 export enum FollowStatus {
-	FOLLOWING = 'FOLLOWING',
+	FOLLOWING = 'following',
+	UNFOLLOWING = 'null',
 }
 
 export type FollowersMap = {
