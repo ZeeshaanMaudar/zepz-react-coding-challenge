@@ -8,9 +8,9 @@ import { AccordionStyled, Header, Title, Subtitle} from './styles';
 
 export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 
-	const [expanded, setExpanded] = useState<string | false>(false);
+	const [expanded, setExpanded] = useState<number | false>(false);
 
-  const handleChange = (isExpanded: boolean, panel: string) => {
+  const handleChange = (isExpanded: boolean, panel: number) => {
 		setExpanded(isExpanded ? panel : false);
 	};
 
