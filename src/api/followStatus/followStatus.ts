@@ -10,7 +10,7 @@ export const getFollowStatus = (userIdsList: number[]) => {
 
 	userIdsList.forEach((userId: number) => {
 		const status = localStorage.getItem(`${userId}`);
-		followStatusMap[userId] = status;
+		followStatusMap[userId] = status || null;
 	});
 
 	return followStatusMap;
