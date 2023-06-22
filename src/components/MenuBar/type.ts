@@ -3,10 +3,16 @@ import { Dispatch, SetStateAction } from 'react';
 export const enum SortCategory {
 	REPUTATION = 'reputation',
 	NAME = 'name',
-	DISPLAY_NAME = 'display_name',
+}
+
+export const enum SortOrder {
+	DESC = 'desc',
+	ASC = 'asc',
 }
 
 export interface MenuBarProps {
 	sortCategory: string;
 	setSortCategory: Dispatch<SetStateAction<string>>;
+	sortOrder: string;
+	setSortOrder: Dispatch<SetStateAction<string>>;
 }

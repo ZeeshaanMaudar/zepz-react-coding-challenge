@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { AxiosError } from 'axios';
 import { getUsers } from '..';
-import { UserItem, UsersResponseAPI } from '../types';
+import { UrlParams, UserItem, UsersResponseAPI } from '../types';
 
-export const useFetchUsers = () => {
+export const useFetchUsers = ({ sortCategory, sortOrder }: UrlParams) => {
     const [loading, setLoading] = useState(false);
     const [usersList, setUsersList] = useState<UserItem[]>([]);
     const [error, setError] = useState<AxiosError>();
 
     useEffect(() => {
         setLoading(true)
-        getUsers()
+        getUsers({ sortCategory, sortOrder })
         .then((data: UsersResponseAPI) => {
             setUsersList(data.items);
             setLoading(false);
@@ -19,7 +19,7 @@ export const useFetchUsers = () => {
             setError(error);
         })
         .finally(() => setLoading(false));
-    }, [])
+    }, [sortCategory, sortOrder])
 
     return { loading, usersList, error };
 };
