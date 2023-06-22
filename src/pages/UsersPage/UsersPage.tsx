@@ -8,11 +8,11 @@ import { useFetchUsers } from '../../api/users';
 import { UsersList } from '../../components/UsersList/UsersList';
 import { MenuBar } from '../../components/MenuBar';
 
-import { SpinnerContainer, Wrapper } from './styles';
-import { SortCategory, SortOrder } from '../../components/MenuBar/type';
+import { SortOrder } from '../../components/MenuBar/types';
+import { SortCategory } from '../../components/SortCategoriesForm/types';
 import { UserItem } from '../../api/users/types';
 
-
+import { SpinnerContainer, Wrapper } from './styles';
 
 export const UsersPage: FC = () => {
 

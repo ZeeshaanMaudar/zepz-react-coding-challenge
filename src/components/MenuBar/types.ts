@@ -1,10 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export const enum SortCategory {
-	REPUTATION = 'reputation',
-	NAME = 'name',
-}
-
 export const enum SortOrder {
 	DESC = 'desc',
 	ASC = 'asc',

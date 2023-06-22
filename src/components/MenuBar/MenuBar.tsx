@@ -3,20 +3,16 @@ import React, { FC } from 'react';
 import {
 	Box,
 	Button,
-	FormControl,
-	InputLabel,
-	MenuItem,
-	Select,
-	SelectChangeEvent,
 	ToggleButton,
 	ToggleButtonGroup,
 } from '@mui/material';
 
 import { ArrowUpward as ArrowUpIcon, ArrowDownward  as ArrowDownIcon } from '@mui/icons-material'
 
-import { SortCategory, MenuBarProps, SortOrder } from './type';
+import { MenuBarProps, SortOrder } from './types';
 
 import { AppBarStyled, BoxWrapper, ToolbarStyled } from './styles';
+import { SortCategoriesForm } from '../SortCategoriesForm';
 
 export const MenuBar: FC<MenuBarProps> = ({
 	sortCategory,
@@ -28,10 +24,6 @@ export const MenuBar: FC<MenuBarProps> = ({
 	hasMorePages,
 	disabled,
 }) => {
-
-	const handleSortCategoryChange = (event: SelectChangeEvent) => {
-    setSortCategory(event.target.value as string);
-  };
 
 	const handleSortOrder = (
     event: React.MouseEvent<HTMLElement>,
@@ -51,36 +43,28 @@ export const MenuBar: FC<MenuBarProps> = ({
   return (
 		<AppBarStyled position="sticky" color="inherit">
 			<ToolbarStyled>
-					<BoxWrapper>
-						<FormControl sx={{ m: 1, minWidth: 80 }} disabled={disabled}>
-							<InputLabel id="sort">Sort</InputLabel>
-							<Select
-								labelId="sort-select"
-								id="sort-select"
-								value={sortCategory}
-								label="Sort"
-								onChange={handleSortCategoryChange}
-							>
-								<MenuItem value={SortCategory.REPUTATION}>{SortCategory.REPUTATION}</MenuItem>
-								<MenuItem value={SortCategory.NAME}>{SortCategory.NAME}</MenuItem>
-							</Select>
-						</FormControl>
-						<Box>
-							<ToggleButtonGroup
-								value={sortOrder}
-								exclusive
-								onChange={handleSortOrder}
-								aria-label="sort order"
-								disabled={disabled}
-							>
-								<ToggleButton value={SortOrder.DESC} aria-label="descending order">
-									<ArrowDownIcon />
-								</ToggleButton>
-								<ToggleButton value={SortOrder.ASC} aria-label="ascending order">
-									<ArrowUpIcon />
-								</ToggleButton>
-							</ToggleButtonGroup>
-						</Box>
+				<BoxWrapper>
+					<SortCategoriesForm
+						sortCategory={sortCategory}
+						setSortCategory={setSortCategory}
+						disabled={disabled}
+					/>
+					<Box>
+						<ToggleButtonGroup
+							value={sortOrder}
+							exclusive
+							onChange={handleSortOrder}
+							aria-label="sort order"
+							disabled={disabled}
+						>
+							<ToggleButton value={SortOrder.DESC} aria-label="descending order">
+								<ArrowDownIcon />
+							</ToggleButton>
+							<ToggleButton value={SortOrder.ASC} aria-label="ascending order">
+								<ArrowUpIcon />
+							</ToggleButton>
+						</ToggleButtonGroup>
+					</Box>
 				</BoxWrapper>
 				<Box>
 					<Button onClick={handleGoToPreviousPage} disabled={!hasPreviousPage || disabled}>Previous</Button>
