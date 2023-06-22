@@ -1,18 +1,13 @@
 import React, { FC } from 'react';
 
-import {
-	Box,
-	Button,
-	ToggleButton,
-	ToggleButtonGroup,
-} from '@mui/material';
+import { Box, Button } from '@mui/material';
 
-import { ArrowUpward as ArrowUpIcon, ArrowDownward  as ArrowDownIcon } from '@mui/icons-material'
+import { MenuBarProps } from './types';
 
-import { MenuBarProps, SortOrder } from './types';
+import { SortCategoriesForm } from '../SortCategoriesForm';
+import { SortOrderButtons } from '../SortOrderButtons';
 
 import { AppBarStyled, BoxWrapper, ToolbarStyled } from './styles';
-import { SortCategoriesForm } from '../SortCategoriesForm';
 
 export const MenuBar: FC<MenuBarProps> = ({
 	sortCategory,
@@ -24,13 +19,6 @@ export const MenuBar: FC<MenuBarProps> = ({
 	hasMorePages,
 	disabled,
 }) => {
-
-	const handleSortOrder = (
-    event: React.MouseEvent<HTMLElement>,
-    newSortOrder: string,
-  ) => {
-    setSortOrder(newSortOrder);
-  };
 
 	const handleGoToPreviousPage = () => {
 		setPage(previousPage => previousPage - 1);
@@ -49,22 +37,11 @@ export const MenuBar: FC<MenuBarProps> = ({
 						setSortCategory={setSortCategory}
 						disabled={disabled}
 					/>
-					<Box>
-						<ToggleButtonGroup
-							value={sortOrder}
-							exclusive
-							onChange={handleSortOrder}
-							aria-label="sort order"
-							disabled={disabled}
-						>
-							<ToggleButton value={SortOrder.DESC} aria-label="descending order">
-								<ArrowDownIcon />
-							</ToggleButton>
-							<ToggleButton value={SortOrder.ASC} aria-label="ascending order">
-								<ArrowUpIcon />
-							</ToggleButton>
-						</ToggleButtonGroup>
-					</Box>
+					<SortOrderButtons
+						sortOrder={sortOrder}
+						setSortOrder={setSortOrder}
+						disabled={disabled}
+					/>
 				</BoxWrapper>
 				<Box>
 					<Button onClick={handleGoToPreviousPage} disabled={!hasPreviousPage || disabled}>Previous</Button>

@@ -8,8 +8,8 @@ import { useFetchUsers } from '../../api/users';
 import { UsersList } from '../../components/UsersList/UsersList';
 import { MenuBar } from '../../components/MenuBar';
 
-import { SortOrder } from '../../components/MenuBar/types';
 import { SortCategory } from '../../components/SortCategoriesForm/types';
+import { SortOrder } from '../../components/SortOrderButtons/types';
 import { UserItem } from '../../api/users/types';
 
 import { SpinnerContainer, Wrapper } from './styles';

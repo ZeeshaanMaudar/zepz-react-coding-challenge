@@ -1,10 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export const enum SortOrder {
-	DESC = 'desc',
-	ASC = 'asc',
-}
-
 export interface MenuBarProps {
 	sortCategory: string;
 	setSortCategory: Dispatch<SetStateAction<string>>;
