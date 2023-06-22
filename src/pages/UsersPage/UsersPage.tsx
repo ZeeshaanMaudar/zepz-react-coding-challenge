@@ -1,15 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { AxiosError } from 'axios';
 
 import { Alert, CircularProgress } from '@mui/material';
 
 import { useFetchUsers } from '../../api/users';
 
-import { SpinnerContainer, Wrapper } from './styles';
 import { UsersList } from '../../components/UsersList/UsersList';
+import { MenuBar } from '../../components/MenuBar';
+
+import { SpinnerContainer, Wrapper } from './styles';
+
 
 
 export const UsersPage: FC = () => {
+
+	const [sortCategory, setSortCategory] = useState<string>('');
 
 	const { loading, usersList, error } = useFetchUsers();
 
@@ -34,9 +39,10 @@ export const UsersPage: FC = () => {
 	};
 
   return (
-  		<Wrapper maxWidth="sm">
-				{loadSpinner(loading)}
-				{displayError(error)}
+  	<Wrapper maxWidth="sm">
+			<MenuBar sortCategory={sortCategory} setSortCategory={setSortCategory} />
+			{loadSpinner(loading)}
+			{displayError(error)}
 			<UsersList usersList={usersList} />
 		</Wrapper>
 	);
