@@ -13,7 +13,12 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 
 	const [expanded, setExpanded] = useState<number | false>(false);
 
-	const { usersStatus, followUser, unfollowUser, blockUser } = useUserStatus(usersList);
+	const {
+		usersStatus,
+		followUser,
+		unfollowUser,
+		blockUser
+	} = useUserStatus(usersList);
 
   const handleAccordionToggleChange = (isExpanded: boolean, panel: number) => {
 		setExpanded(isExpanded ? panel : false);
