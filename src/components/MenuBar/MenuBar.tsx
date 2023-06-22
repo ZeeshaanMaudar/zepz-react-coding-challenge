@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
 import {
-	AppBar,
 	Box,
 	FormControl,
 	InputLabel,
@@ -17,6 +16,8 @@ import { ArrowUpward as ArrowUpIcon, ArrowDownward  as ArrowDownIcon } from '@mu
 
 import { SortCategory, MenuBarProps, SortOrder } from './type';
 
+import { AppBarStyled } from './styles';
+
 export const MenuBar: FC<MenuBarProps> = ({ sortCategory, setSortCategory, sortOrder, setSortOrder }) => {
 
 	const handleSortCategoryChange = (event: SelectChangeEvent) => {
@@ -31,39 +32,38 @@ export const MenuBar: FC<MenuBarProps> = ({ sortCategory, setSortCategory, sortO
   };
 
   return (
-		<Box>
-			<AppBar position="sticky" color="transparent">
-				<Toolbar>
-					<FormControl sx={{ m: 1, minWidth: 80 }}>
-						<InputLabel id="sort">Sort</InputLabel>
-						<Select
-							labelId="sort-select"
-							id="sort-select"
-							value={sortCategory}
-							label="Sort"
-							onChange={handleSortCategoryChange}
-						>
-							<MenuItem value={SortCategory.REPUTATION}>{SortCategory.REPUTATION}</MenuItem>
-							<MenuItem value={SortCategory.NAME}>{SortCategory.NAME}</MenuItem>
-						</Select>
-					</FormControl>
-					<Box>
-						<ToggleButtonGroup
-							value={sortOrder}
-							exclusive
-							onChange={handleSortOrder}
-							aria-label="sort order"
-						>
-							<ToggleButton value={SortOrder.DESC} aria-label="descending order">
-								<ArrowDownIcon />
-							</ToggleButton>
-							<ToggleButton value={SortOrder.ASC} aria-label="ascending order">
-								<ArrowUpIcon />
-							</ToggleButton>
-						</ToggleButtonGroup>
-					</Box>
-				</Toolbar>
-			</AppBar>
-		</Box>
+		<AppBarStyled position="sticky" color="inherit">
+			<Toolbar>
+				<FormControl sx={{ m: 1, minWidth: 80 }}>
+					<InputLabel id="sort">Sort</InputLabel>
+					<Select
+						labelId="sort-select"
+						id="sort-select"
+						value={sortCategory}
+						label="Sort"
+						onChange={handleSortCategoryChange}
+					>
+						<MenuItem value={SortCategory.REPUTATION}>{SortCategory.REPUTATION}</MenuItem>
+						<MenuItem value={SortCategory.NAME}>{SortCategory.NAME}</MenuItem>
+					</Select>
+				</FormControl>
+				<Box>
+					<ToggleButtonGroup
+						value={sortOrder}
+						exclusive
+						onChange={handleSortOrder}
+						aria-label="sort order"
+					>
+						<ToggleButton value={SortOrder.DESC} aria-label="descending order">
+							<ArrowDownIcon />
+						</ToggleButton>
+						<ToggleButton value={SortOrder.ASC} aria-label="ascending order">
+							<ArrowUpIcon />
+						</ToggleButton>
+					</ToggleButtonGroup>
+				</Box>
+				<Box></Box>
+			</Toolbar>
+		</AppBarStyled>
 	);
 };
