@@ -5,10 +5,12 @@ export interface UserItem {
 	reputation: number;
 }
 export interface UsersResponseAPI {
-	items: UserItem[]
+	items: UserItem[];
+	has_more: boolean;
 }
 
 export interface UrlParams {
 	sortCategory: string;
 	sortOrder: string;
+	page: number;
 }

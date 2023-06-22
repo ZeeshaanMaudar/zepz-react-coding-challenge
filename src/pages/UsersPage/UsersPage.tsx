@@ -18,8 +18,9 @@ export const UsersPage: FC = () => {
 
 	const [sortCategory, setSortCategory] = useState<string>(SortCategory.REPUTATION);
 	const [sortOrder, setSortOrder] = useState<string>(SortOrder.DESC);
+	const [page, setPage] = useState<number>(1);
 
-	const { loading, usersList, error } = useFetchUsers({ sortCategory, sortOrder });
+	const { loading, usersList, error, hasMorePages } = useFetchUsers({ sortCategory, sortOrder, page });
 
 	const loadSpinner = (loading: boolean) => {
 		if (!loading) return;
@@ -53,6 +54,9 @@ export const UsersPage: FC = () => {
 				setSortCategory={setSortCategory}
 				sortOrder={sortOrder}
 				setSortOrder={setSortOrder}
+				setPage={setPage}
+				hasPreviousPage={page > 1}
+				hasMorePages={hasMorePages}
 			/>
 			{loadSpinner(loading)}
 			{displayError(error)}

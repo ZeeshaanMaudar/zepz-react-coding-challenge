@@ -15,4 +15,7 @@ export interface MenuBarProps {
 	setSortCategory: Dispatch<SetStateAction<string>>;
 	sortOrder: string;
 	setSortOrder: Dispatch<SetStateAction<string>>;
+	setPage: Dispatch<SetStateAction<number>>;
+	hasPreviousPage: boolean;
+	hasMorePages: boolean;
 }
