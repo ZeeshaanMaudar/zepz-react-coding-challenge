@@ -18,4 +18,5 @@ export interface MenuBarProps {
 	setPage: Dispatch<SetStateAction<number>>;
 	hasPreviousPage: boolean;
 	hasMorePages: boolean;
+	disabled: boolean;
 }

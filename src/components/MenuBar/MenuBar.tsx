@@ -25,7 +25,8 @@ export const MenuBar: FC<MenuBarProps> = ({
 	setSortOrder,
 	setPage,
 	hasPreviousPage,
-	hasMorePages
+	hasMorePages,
+	disabled,
 }) => {
 
 	const handleSortCategoryChange = (event: SelectChangeEvent) => {
@@ -51,7 +52,7 @@ export const MenuBar: FC<MenuBarProps> = ({
 		<AppBarStyled position="sticky" color="inherit">
 			<ToolbarStyled>
 					<BoxWrapper>
-						<FormControl sx={{ m: 1, minWidth: 80 }}>
+						<FormControl sx={{ m: 1, minWidth: 80 }} disabled={disabled}>
 							<InputLabel id="sort">Sort</InputLabel>
 							<Select
 								labelId="sort-select"
@@ -70,6 +71,7 @@ export const MenuBar: FC<MenuBarProps> = ({
 								exclusive
 								onChange={handleSortOrder}
 								aria-label="sort order"
+								disabled={disabled}
 							>
 								<ToggleButton value={SortOrder.DESC} aria-label="descending order">
 									<ArrowDownIcon />
@@ -81,8 +83,8 @@ export const MenuBar: FC<MenuBarProps> = ({
 						</Box>
 				</BoxWrapper>
 				<Box>
-					<Button onClick={handleGoToPreviousPage} disabled={!hasPreviousPage}>Previous</Button>
-					<Button onClick={handleGoToNextPage} disabled={!hasMorePages}>Next</Button>
+					<Button onClick={handleGoToPreviousPage} disabled={!hasPreviousPage || disabled}>Previous</Button>
+					<Button onClick={handleGoToNextPage} disabled={!hasMorePages || disabled}>Next</Button>
 				</Box>
 			</ToolbarStyled>
 		</AppBarStyled>

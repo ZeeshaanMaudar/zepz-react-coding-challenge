@@ -57,6 +57,7 @@ export const UsersPage: FC = () => {
 				setPage={setPage}
 				hasPreviousPage={page > 1}
 				hasMorePages={hasMorePages}
+				disabled={loading || !!error}
 			/>
 			{loadSpinner(loading)}
 			{displayError(error)}
