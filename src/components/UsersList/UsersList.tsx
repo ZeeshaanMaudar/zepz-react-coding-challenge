@@ -42,7 +42,7 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 	const callFollowIcon = (usersStatus: FollowersMap, userId: number) => {
 		if(usersStatus[userId] === FollowStatus.FOLLOWING) {
 			return (
-				<PersonIcon color="success" />
+				<PersonIcon color="success" data-testid={`follow-icon-${userId}`} />
 			);
 		}
 
@@ -58,11 +58,13 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 						expanded={expanded === user_id}
 						onChange={(event, isExpanded) => handleAccordionToggleChange(isExpanded, user_id)}
 						disabled={usersStatus[user_id] === FollowStatus.BLOCKED}
+						data-testid={`accordion-${user_id}`}
 					>
 						<AccordionSummary
 							expandIcon={<ExpandMoreIcon />}
 							aria-controls={`${user_id}-content`}
 							id={`${user_id}-header`}
+							data-testid={`accordion-summary-${user_id}`}
 						>
 							<Box>
 								<Avatar alt={display_name} src={profile_image} />
@@ -76,10 +78,10 @@ export const UsersList: FC<UsersListProps> = ({ usersList }) => {
 							</Header>
 						</AccordionSummary>
 						<AccordionDetails>
-							<Button onClick={() => handleFollowChange(usersStatus, user_id)}>
+							<Button onClick={() => handleFollowChange(usersStatus, user_id)} data-testid={`follow-button-${user_id}`}>
 								{callFollowOrUnFollow(usersStatus, user_id)}
 							</Button>
-							<Button color="error" onClick={() => handleBlockUser(user_id)}>Block</Button>
+							<Button color="error" onClick={() => handleBlockUser(user_id)} data-testid={`block-button-${user_id}`}>Block</Button>
 						</AccordionDetails>
 				</AccordionStyled>
 				)
