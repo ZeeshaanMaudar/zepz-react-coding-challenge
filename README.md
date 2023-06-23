@@ -1,3 +1,7 @@
+## Please read the CHALLENGE_CONDITIONS readme for understanding of tasks tackled and thoughts.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
