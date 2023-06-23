@@ -4,6 +4,7 @@ export interface UserItem {
 	profile_image: string;
 	reputation: number;
 }
+
 export interface UsersResponseAPI {
 	items: UserItem[];
 	has_more: boolean;

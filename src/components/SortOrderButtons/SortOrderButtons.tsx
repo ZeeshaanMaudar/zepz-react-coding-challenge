@@ -21,10 +21,10 @@ export const SortOrderButtons: FC<SortOrderButtonsProps> = ({ sortOrder, setSort
 			aria-label="sort order"
 			disabled={disabled}
 		>
-			<ToggleButton value={SortOrder.DESC} aria-label="descending order">
+			<ToggleButton value={SortOrder.DESC} aria-label="descending order" data-testid={`order-${SortOrder.DESC}`}>
 					<ArrowDownIcon />
 			</ToggleButton>
-			<ToggleButton value={SortOrder.ASC} aria-label="ascending order">
+			<ToggleButton value={SortOrder.ASC} aria-label="ascending order" data-testid={`order-${SortOrder.ASC}`}>
 					<ArrowUpIcon />
 			</ToggleButton>
     </ToggleButtonGroup>
